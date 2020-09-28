@@ -1,0 +1,35 @@
+## Spring REST
+server:
+    port: 8090 
+
+#Eureka
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka
+        
+
+## MySQL
+spring:
+    application:
+        name: login-service
+    datasource:
+        url: jdbc:mysql://localhost:3306/login_credentials_db
+        username: ogupta261
+        password: system
+        driverClassName: com.mysql.cj.jdbc.Driver
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+#looger
+logging:
+    level: 
+        root: WARN
+        com.cg: INFO
+    file:
+        name: './login-application-prod.log'
+    pattern:
+        console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+        file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%'
