@@ -3,7 +3,6 @@ package com.cg.loginservice.authentication;
 import java.util.List;
 import java.util.Optional;
 
-import com.cg.loginservice.dao.LoginDAO;
 import com.cg.loginservice.dao.UserOTPDAO;
 import com.cg.loginservice.dto.LoginDTO;
 import com.cg.loginservice.dto.UserOTPDTO;
@@ -25,13 +24,10 @@ public class CredentialRepository implements ICredentialRepository {
     private String logUserNo2FA = "User not generated 2FA!";
     private String throwUserNo2FA = "User has not generated 2FA authentication.";
     @Autowired
-    UserOTPDAO userOTPDAO;
+    private UserOTPDAO userOTPDAO;
 
     @Autowired
-    LoginDAO loginDAO;
-
-    @Autowired
-    LoginService loginService;
+    private LoginService loginService;
 
     @Override
     public String getSecretKey(String userNameCommaRole) {

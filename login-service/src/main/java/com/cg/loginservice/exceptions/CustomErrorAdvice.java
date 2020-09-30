@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class CustomErrorAdvice {
     
     @ExceptionHandler({ CustomException.class, SQLException.class, NullPointerException.class, WriterException.class, IOException.class})
-    public ResponseEntity<ErrorInfo> handle1(Exception ce) {
-        System.out.println("..............handleConflict------------...");
+    public ResponseEntity<ErrorInfo> handle(Exception ce) {
         ErrorInfo error = new ErrorInfo(ce.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
