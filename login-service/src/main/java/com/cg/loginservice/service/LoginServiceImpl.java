@@ -24,7 +24,7 @@ public class LoginServiceImpl implements LoginService {
 	private Logger log=LoggerFactory.getLogger(this.getClass());
 	private String userOptionalEmptyError = "User not Found!";
 	@Autowired
-	LoginDAO loginDao;
+	private LoginDAO loginDao;
 
 	@Override
 	public LoginDTO authenticateUser(String userName, String password, String role) {
