@@ -52,7 +52,6 @@ public class LoginCredentials {
         password = credentials.getPassword();
         role = credentials.getRole();
         authConsent = credentials.getAuthConsent();
-        lastLoginDate = credentials.getLastLoginDate();
 	}
 
 	public Date getLastLoginDate() {

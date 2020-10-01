@@ -88,8 +88,9 @@ public class LoginServiceImpl implements LoginService {
 		verifyAuthConsentValid(credentials.getAuthConsent());
 		if(!loginDao.existsById(new LoginCredentialsId(credentials.getUserName(), credentials.getRole()))) {	
 			log.info("Adding credentials: "+credentials.getUserName()+" - " +credentials.getRole());
-			credentials.setLastLoginDate(Date.from(LocalDate.of(2000,1,1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
-			return new LoginDTO(loginDao.save(new LoginCredentials(credentials)));
+			LoginCredentials temp = new LoginCredentials(credentials);
+			temp.setLastLoginDate(Date.from(LocalDate.of(2000,1,1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+			return new LoginDTO(loginDao.save(temp));
 		}else {
 			log.error("User Exists!", CustomException.class);
 			throw new CustomException("User Already Exists!");

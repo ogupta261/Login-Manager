@@ -9,6 +9,7 @@ import com.cg.loginservice.dto.RegistrationDataDTO;
 import com.cg.loginservice.dto.ValidateCodeDTO;
 import com.cg.loginservice.dto.ValidationDTO;
 import com.cg.loginservice.dto.LoginCredentialsDTO;
+import com.cg.loginservice.dto.LoginDTO;
 import com.cg.loginservice.dto.RegistrationDTO;
 import com.cg.loginservice.service.LoginService;
 import com.google.zxing.BarcodeFormat;
@@ -51,15 +52,15 @@ public class LoginController {
 		return "This is the Home Page for the Login Manager.";
 	}
 
-	// This method returns Validation having a boolean variable "valid". MAIN METHOD FOR LOGIN.
-	// After this returns true, check 2FA status with "googleAuthStatus" Line 66, then
-	// If 2FA status active, you need to ask for 2FA code and check for validity using
+	// This method returns LoginDTO. MAIN METHOD FOR LOGIN.
+	// After this object has authConsent == true, you need to ask for 2FA code and check for validity using
 	// "validateKey" Line 123. If that return true. you can Login.
-	// Alternatively, if login method return TRUE and 2FA is inactive, you can Login.
+	// Alternatively, if authConsent == false means 2FA is inactive, you can Login.
+	// If credentials are wrong Exception is thrown.
 	@PostMapping(value = "/login")
-	public ValidationDTO login(@RequestBody LoginCredentialsDTO credentials) {
-		return new ValidationDTO(loginService.authenticateUser(credentials.getUserName(), credentials.getPassword(), 
-		credentials.getRole()).getAuthConsent());
+	public LoginDTO login(@RequestBody LoginCredentialsDTO credentials) {
+		return loginService.authenticateUser(credentials.getUserName(), credentials.getPassword(), 
+		credentials.getRole());
 	}
 
 	// This method is used to register a new candidate, This method check for unique combination of userName and role
@@ -81,7 +82,8 @@ public class LoginController {
 	}
 
 	// This method changes 2FA status in case, user requests to disable or enable the 2FA.
-	// It just flips the value, If it was enabled, this will return false, else true.
+	// It just flips the value, If it was enabled, this will return false, else true.\
+	// i.e. the Changed 2FA status value.
 	@PostMapping(value = "/change2FAStatus")
 	public ValidationDTO changeAuthStatus(@RequestParam String userName, @RequestParam String role){
 		boolean temp = loginService.changeAuthStatus(userName, role).getAuthConsent();

@@ -1,30 +1,24 @@
 package com.cg.loginservice.dto;
 
-import java.util.Date;
-
 public class LoginCredentialsDTO {
     private String userName;
     private String role;
     private String password;
     private boolean authConsent;
-	private Date lastLoginDate;
 
     public LoginCredentialsDTO() {
         super();
+    }
+    public LoginCredentialsDTO(String userName, String password, String role) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
     }
     public LoginCredentialsDTO(String userName, String password, String role, boolean authConsent) {
         this.userName = userName;
         this.password = password;
         this.role = role;
         this.authConsent = authConsent;
-    }
-
-    public Date getLastLoginDate() {
-        return lastLoginDate;
-    }
-
-    public void setLastLoginDate(Date lastLoginDate) {
-        this.lastLoginDate = lastLoginDate;
     }
 
     public String getUserName() {
@@ -61,7 +55,7 @@ public class LoginCredentialsDTO {
 
     @Override
     public String toString() {
-        return "LoginCredentials [password=" + password + ", role=" + role + ", userName=" + userName + ", 2FA=" + authConsent + ", lastLoginDate=" + lastLoginDate.toString() + "]";
+        return "LoginCredentials [password=" + password + ", role=" + role + ", userName=" + userName + ", 2FA=" + authConsent + "]";
     }
 
     @Override
