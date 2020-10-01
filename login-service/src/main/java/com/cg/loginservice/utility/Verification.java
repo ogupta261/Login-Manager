@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Verification {
+    private Verification() {
+        
+    }
     private static Logger log = LoggerFactory.getLogger(Verification.class);
     public static void verifyUserName(String userName) {
         if (userName.length() == 0) {

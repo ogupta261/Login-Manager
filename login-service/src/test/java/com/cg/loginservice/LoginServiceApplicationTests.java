@@ -67,9 +67,9 @@ class LoginServiceApplicationTests {
 		LoginCredentials temp = new LoginCredentials("user", "Pass123", "admin", true);
 		entityManager.persist(temp);
 		entityManager.flush();
-		assertEquals(assertThrows(
+		assertEquals("Credentials Invalid!", assertThrows(
 			CustomException.class,()
-			 -> loginService.authenticateUser("user1", "Pass123", "admin")).getMessage(),"Credentials Invalid!");
+			 -> loginService.authenticateUser("user1", "Pass123", "admin")).getMessage());
 	}
 	
 	@Test
@@ -77,9 +77,9 @@ class LoginServiceApplicationTests {
 		LoginCredentials temp = new LoginCredentials("user", "Pass123", "admin", true);
 		entityManager.persist(temp);
 		entityManager.flush();
-		assertEquals(assertThrows(
+		assertEquals("Username cannot be Empty!", assertThrows(
 			CustomException.class,()
-			 -> loginService.authenticateUser("", "Pass123", "admin")).getMessage(),"Username cannot be Empty!");
+			 -> loginService.authenticateUser("", "Pass123", "admin")).getMessage());
 	}
 
 	@Test
@@ -87,9 +87,9 @@ class LoginServiceApplicationTests {
 		LoginCredentials temp = new LoginCredentials("user", "Pass123", "admin", true);
 		entityManager.persist(temp);
 		entityManager.flush();
-		assertEquals(assertThrows(
+		assertEquals("Password cannot be Empty!", assertThrows(
 			CustomException.class,()
-			 -> loginService.authenticateUser("user1", "", "admin")).getMessage(),"Password cannot be Empty!");
+			 -> loginService.authenticateUser("user1", "", "admin")).getMessage());
 	}
 
 	@Test
@@ -97,10 +97,10 @@ class LoginServiceApplicationTests {
 		LoginCredentials temp = new LoginCredentials("user", "Pass123", "admin", true);
 		entityManager.persist(temp);
 		entityManager.flush();
-		assertEquals(assertThrows(
-			CustomException.class,()
-			 -> loginService.authenticateUser("user1", "Pass", "admin")).getMessage(),
-			 "Password not following Policy. Greater than 6 characters, Starting with Capital Letter.");
+		assertEquals("Password not following Policy. Greater than 6 characters, Starting with Capital Letter.", 
+				assertThrows(
+					CustomException.class,()
+					-> loginService.authenticateUser("user1", "Pass", "admin")).getMessage());
 	}
 
 	@Test
@@ -108,9 +108,9 @@ class LoginServiceApplicationTests {
 		LoginCredentials temp = new LoginCredentials("user", "Pass123", "admin", true);
 		entityManager.persist(temp);
 		entityManager.flush();
-		assertEquals(assertThrows(
+		assertEquals("Role cannot be Empty!", assertThrows(
 			CustomException.class,()
-			 -> loginService.authenticateUser("user1", "Pass123", "")).getMessage(),"Role cannot be Empty!");
+			 -> loginService.authenticateUser("user1", "Pass123", "")).getMessage());
 	}
 
 	@Test
@@ -128,10 +128,10 @@ class LoginServiceApplicationTests {
 		entityManager.persist(temp);
 		entityManager.flush();
 
-		assertEquals(
+		assertEquals("User not Found!",
 			assertThrows(
 				CustomException.class, ()
-				 -> loginService.getUser("user1", "admin")).getMessage(),"User not Found!");
+				 -> loginService.getUser("user1", "admin")).getMessage());
 	}
 
 	@Test
@@ -140,7 +140,7 @@ class LoginServiceApplicationTests {
 		entityManager.persist(temp);
 		entityManager.flush();
 
-		assertFalse(loginService.changeAuthStatus("user", "admin").getAuthConsent());
+		assertEquals(false,loginService.changeAuthStatus("user", "admin").getAuthConsent());
 	}
 
 	@Test
@@ -149,10 +149,10 @@ class LoginServiceApplicationTests {
 		entityManager.persist(temp);
 		entityManager.flush();
 
-		assertEquals(
+		assertEquals("User not Found!",
 			assertThrows(
 				CustomException.class, ()
-				 -> loginService.changeAuthStatus("user1", "admin")).getMessage(),"User not Found!");
+				 -> loginService.changeAuthStatus("user1", "admin")).getMessage());
 	}
 
 	@Test
@@ -161,7 +161,7 @@ class LoginServiceApplicationTests {
 		entityManager.persist(temp);
 		entityManager.flush();
 
-		assertTrue(loginService.changePassword("user", "admin", "Newpass"));
+		assertEquals(true, loginService.changePassword("user", "admin", "Newpass"));
 	}
 
 	@Test
@@ -170,16 +170,16 @@ class LoginServiceApplicationTests {
 		entityManager.persist(temp);
 		entityManager.flush();
 
-		assertEquals(
+		assertEquals("User not Found!",
 			assertThrows(
 				CustomException.class, ()
-				 -> loginService.changePassword("user1", "admin", "Newpass")).getMessage(),"User not Found!");
+				 -> loginService.changePassword("user1", "admin", "Newpass")).getMessage());
 	}
 
 	@Test
 	void whenAddCredentialsByLoginCredentialsDTO_thenReturnLoginDTO() {
 		LoginDTO newUser = loginService.addCredentials(new LoginCredentialsDTO("user", "Password", "admin", true));
-		assertTrue(newUser.getUserName().equals("user") && newUser.getRole().equals("admin") && newUser.getAuthConsent() && 
+		assertEquals(true, newUser.getUserName().equals("user") && newUser.getRole().equals("admin") && newUser.getAuthConsent() && 
 		newUser.getLastLoginDate().compareTo(Date.from(LocalDate.of(2000,1,1).atStartOfDay(ZoneId.systemDefault()).toInstant()))==0);
 	}
 
@@ -190,11 +190,10 @@ class LoginServiceApplicationTests {
 		entityManager.flush();
 		
 		LoginCredentialsDTO tempDTO = new LoginCredentialsDTO("user", "Password", "admin", true);
-		assertEquals(
+		assertEquals("User Already Exists!",
 			assertThrows(
 				CustomException.class, ()
-				 -> loginService.addCredentials(tempDTO)).getMessage(),
-				 "User Already Exists!");
+				 -> loginService.addCredentials(tempDTO)).getMessage());
 	}
 
 	@Test
@@ -203,7 +202,7 @@ class LoginServiceApplicationTests {
 		entityManager.persist(temp);
 		entityManager.flush();
 
-		assertTrue(loginService.deleteCredentials("user", "admin"));
+		assertEquals(true, loginService.deleteCredentials("user", "admin"));
 	}
 
 	@Test
@@ -212,6 +211,6 @@ class LoginServiceApplicationTests {
 		entityManager.persist(temp);
 		entityManager.flush();
 
-		assertFalse(loginService.deleteCredentials("user1", "admin"));
+		assertEquals(false, loginService.deleteCredentials("user1", "admin"));
 	}
 }
