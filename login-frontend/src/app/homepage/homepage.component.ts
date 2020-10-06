@@ -85,7 +85,10 @@ export class HomepageComponent implements OnInit {
       e => {
         this.user.authConsent=e.valid;
         if(e.valid){
+          this.authStatus="true";
           this.openQR();
+        }else {
+          this.authStatus="false";
         }
       }
     )
