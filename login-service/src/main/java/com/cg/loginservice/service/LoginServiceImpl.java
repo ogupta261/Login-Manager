@@ -36,6 +36,7 @@ public class LoginServiceImpl implements LoginService {
 			log.info("User Validated! - "+user.toString());
 			LoginDTO result = new LoginDTO(user);
 			user.setLastLoginDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+			loginDao.save(user);
 			return result;
 		}else{
 			log.error("User Validation Failed!", CustomException.class);

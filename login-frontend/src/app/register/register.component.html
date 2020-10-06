@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<div class="cont">
+    <div class="register">
+        <mat-card class="register-card">
+            <mat-card-header>
+                <mat-card-title>Welcome New User</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <label>Enter your Details</label>
+                <form class="register-form">
+                    <p>
+                        <mat-form-field class="register-full-width">
+                            <mat-label>Name</mat-label>
+                            <input matInput class="register-input" [formControl]="nameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.name" placeholder="Eg. Om Gupta"/>
+                            
+                            <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+                                Please enter a valid Name: Starts with capital alphabet and cannot have special characters.
+                            </mat-error>
+                            <mat-error *ngIf="nameFormControl.hasError('required')">
+                                Name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+
+                    <p>
+                        <mat-form-field class="register-full-width">
+                            <mat-label>Username</mat-label>
+                            <input matInput class="register-input" [formControl]="userNameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.userName" placeholder="Eg. ogupta261"/>
+                            
+                            <mat-error *ngIf="userNameFormControl.hasError('pattern') && !userNameFormControl.hasError('required')">
+                                Please enter a valid Username: Starts with alphabet and cannot have special characters.
+                            </mat-error>
+                            <mat-error *ngIf="userNameFormControl.hasError('required')">
+                                Username is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                
+                    <p>
+                        <mat-form-field class="register-full-width">
+                            <mat-label>Password</mat-label>
+                            <input matInput class="register-input" type="password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.password" placeholder="Eg. Password123"/>
+                            
+                            <mat-error *ngIf="(passwordFormControl.hasError('pattern') || passwordFormControl.hasError('minLength')) && !passwordFormControl.hasError('required')">
+                                Please enter a valid Password: Starts with Capital Letter and more than 6 characters. Special Characters: @#
+                            </mat-error>
+                            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                                Password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+
+                    <p>
+                        <mat-form-field class="register-full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput class="register-input" [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.email" placeholder="Eg. ogupta261@gmail.com"/>
+                            
+                            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                Please enter a valid Email: Format abc@gmail.com
+                            </mat-error>
+                            <mat-error *ngIf="emailFormControl.hasError('required')">
+                                Email is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+
+                    <p>
+                        <mat-form-field class="register-full-width">
+                            <mat-label>Phone No</mat-label>
+                            <input matInput class="register-input" [formControl]="phoneNoFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.phoneNo" placeholder="Eg. 9876543210"/>
+                            
+                            <mat-error *ngIf="(phoneNoFormControl.hasError('pattern') || phoneNoFormControl.hasError('minLength') || phoneNoFormControl.hasError('maxLength')) && !phoneNoFormControl.hasError('required')">
+                                Please enter a valid Phone No: 10 digits only.
+                            </mat-error>
+                            <mat-error *ngIf="phoneNoFormControl.hasError('required')">
+                                Phone No is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                </form>
+                <section class="register-auth-section">
+                    <mat-checkbox class="register-auth" labelPosition="before" [(ngModel)]="user.authConsent">Two Factor Authentication</mat-checkbox>
+                </section>
+                <div class="register-buttons">
+                    <span>
+                        <button *ngIf="qrAvailable" color="primary" (click)="showQR()" mat-flat-button>Show QR Code</button>
+                        <button *ngIf="qrGenerate" color="primary" (click)="openQR()" mat-flat-button>Generate QR Code</button>
+                        <button *ngIf="signUp" color="primary" (click)="registerUser()" mat-flat-button>Sign Up</button>
+                        <p>Already have an account? &nbsp;<strong><a routerLink="/login" routerLinkActive="active">Sign In</a></strong></p>
+                    </span>
+                </div>
+                <br>
+                <mat-error *ngIf="registerSuccess">{{registerMessage}}</mat-error>
+                <mat-error *ngIf="registerError">{{registerMessage}}</mat-error>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

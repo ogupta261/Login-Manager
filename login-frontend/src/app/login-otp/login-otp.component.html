@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<div class="cont">
+    <div class="otp">
+        <mat-card class="otp-card">
+            <mat-card-header>
+                <mat-card-title>Enter 6-Digit OTP Below</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="otp-form">
+                    <p>
+                        <mat-form-field class="otp-full-width">
+                            <mat-label>OTP</mat-label>
+                            <input matInput class="otp-input" [formControl]="otpFormControl" [errorStateMatcher]="matcher" [(ngModel)]="otp.code" placeholder="Eg. 123456"/>
+                            
+                            <mat-error *ngIf="(otpFormControl.hasError('minLength') && otpFormControl.hasError('maxLength')) && !otpFormControl.hasError('required')">
+                                Please enter a valid OTP: 6-Digit only without space!
+                            </mat-error>
+                            <mat-error *ngIf="otpFormControl.hasError('required')">
+                                OTP is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                </form>
+                <label>Username: {{user.userName}}</label>
+                &nbsp;
+                <label>Role: {{user.role}}</label>
+                <div class="otp-buttons">
+                    <span>
+                        <button type="submit" color="primary" (click)="onSubmit()" mat-raised-button>Verify</button>
+                    </span>
+                </div>
+                <mat-error *ngIf="otpValid">{{otpMessage}}</mat-error>
+                <mat-error *ngIf="otpInvalid">{{otpMessage}}</mat-error>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

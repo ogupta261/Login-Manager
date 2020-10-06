@@ -1,0 +1,20 @@
+<svg width="323" height="157" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="159" width="325" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <text font-weight="bold" transform="matrix(3.31964, 0, 0, 2.98912, -578.199, -315.096)" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="24" id="svg_1" y="133.47958" x="183.17343" stroke-width="0" stroke="#000" fill="#000000">LOGIN</text>
+  <text transform="matrix(1.69261, 0, 0, 1.53596, -62.7082, -93.5104)" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="24" id="svg_2" y="139.60135" x="53.83582" stroke-width="0" stroke="#000" fill="#000000">M A N A G E R</text>
+  <line stroke-width="5" stroke-linecap="null" stroke-linejoin="null" id="svg_4" y2="143.05" x2="14.5" y1="14.05" x1="14" fill-opacity="null" stroke-opacity="null" stroke="#000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_5" y2="14.05" x2="308.5" y1="14.05" x1="14.5" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_6" y2="142.60001" x2="308" y1="142.60001" x1="14.5" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_7" y2="142.60001" x2="308.5" y1="14.05" x1="308.5" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+  <rect id="svg_9" height="149" width="315" y="4" x="4" fill-opacity="0" stroke-opacity="null" stroke-width="8" stroke="#000" fill="#492222"/>
+ </g>
+</svg>

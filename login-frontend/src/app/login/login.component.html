@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<div class="cont">
+    <div class="login">
+        <mat-card class="login-card">
+            <mat-card-header>
+                <mat-card-title>Enter Details Below</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="login-form">
+                    <p>
+                        <mat-form-field class="login-full-width">
+                            <mat-label>Username</mat-label>
+                            <input matInput class="login-input" [formControl]="userNameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.userName" placeholder="Eg. ogupta261"/>
+                            
+                            <mat-error *ngIf="userNameFormControl.hasError('pattern') && !userNameFormControl.hasError('required')">
+                                Please enter a valid Username: Starts with alphabet and cannot have special characters.
+                            </mat-error>
+                            <mat-error *ngIf="userNameFormControl.hasError('required')">
+                                Username is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                
+                    <p>
+                        <mat-form-field class="login-full-width">
+                            <mat-label>Password</mat-label>
+                            <input matInput class="login-input" type="password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.password" placeholder="Eg. Password123"/>
+                            
+                            <mat-error *ngIf="(passwordFormControl.hasError('pattern') || passwordFormControl.hasError('minLength')) && !passwordFormControl.hasError('required')">
+                                Please enter a valid Password: Starts with Capital Letter and more than 6 characters. Special Characters: @#
+                            </mat-error>
+                            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                                Password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                </form>
+                <label id="login-role">Pick your Role</label>
+                <mat-radio-group class="login-radio-group" [formControl]="roleFormControl" aria-labelledby="Select a Role" [(ngModel)]="user.role">
+                    <mat-radio-button class="login-radio-button" *ngFor="let roleValue of rolesAvailable" [value]='roleValue'>{{roleValue}}</mat-radio-button>
+                </mat-radio-group>
+                <mat-error *ngIf="roleFormControl.hasError('required')">
+                    Role is &nbsp;<strong>required</strong>
+                </mat-error>
+                <div class="login-buttons">
+                    <span>
+                        <button type="submit" color="primary" (click)="authenticate()" mat-flat-button>Sign In</button>
+                        <p>Don't have an account? &nbsp;<strong><a routerLink="/register" routerLinkActive="active">Sign Up</a></strong></p>
+                    </span>
+                </div>
+                <br>
+                <mat-error *ngIf="loggedIn">{{loginMessage}}</mat-error>
+                <mat-error *ngIf="loginError">{{loginMessage}}</mat-error>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

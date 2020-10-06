@@ -39,6 +39,7 @@ public class CredentialRepository implements ICredentialRepository {
             log.error(logUserNo2FA, CustomException.class);
             throw new CustomException(throwUserNo2FA);
         }
+        log.info("User Key Returned: "+userDetails[0]+" - "+userDetails[1]);
         return temp.get().getSecretKey();
     }
 
@@ -50,11 +51,11 @@ public class CredentialRepository implements ICredentialRepository {
         String[] userDetails = userNameCommaRole.split(",");
         LoginDTO user = loginService.getUser(userDetails[0], userDetails[1]);
         verifyAuthConsentEqualsTrue(user);
-        Optional<UserOTP> temp = userOTPDAO.findById(userNameCommaRole);
-        if(temp.isPresent()) {
-            log.error(logUserNo2FA, CustomException.class);
-            throw new CustomException(throwUserNo2FA);
-        }
+        // Optional<UserOTP> temp = userOTPDAO.findById(userNameCommaRole);
+        // if(temp.isPresent()) {
+        //     log.error(logUser2FA, CustomException.class);
+        //     throw new CustomException(throwUser2FA);
+        // }
         log.info("User 2FA Created: "+userDetails[0]+" - "+userDetails[1]);
         userOTPDAO.save(new UserOTP(userNameCommaRole, secretKey, validationCode, scratchCodes));
     }

@@ -1,0 +1,82 @@
+
+.cont{
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); 
+    width:500px;
+    height: fit-content;
+    /* background-image: url(/assets/login-background.jpg); */
+    background-size: cover;
+    overflow: auto;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+.qr-card {
+    position: relative;
+    height: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    padding-top: 2%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(0,0,0,0.6) 100%);
+    transition: opacity 0.1s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
+    transform: scale(1);
+    box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)
+}
+mat-card-header mat-card-title {
+    font-size: x-large;
+    font-weight: 600;
+}
+mat-card-content label {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: medium;
+}
+mat-card-content img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    border: 4px double darkslategrey;
+    border-radius: 5px;
+}
+.qr-form {
+    padding-top: 3%;
+    top: 50%;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.qr-full-width {
+    margin-left: 10%;
+    width: 80%;
+}
+
+.qr-buttons {
+    margin-top: 5%;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+}
+.qr-buttons button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+mat-card-header{
+    display: flex;
+    justify-content: center;
+}

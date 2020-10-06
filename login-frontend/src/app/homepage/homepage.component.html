@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<div class="cont">
+    <div class="home">
+        <mat-card class="home-card">
+            <mat-card-header>
+                <mat-card-title>WELCOME USER</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <label>Username: {{user.userName}}</label>
+                <label>Role: {{user.role}}</label>
+                <label>AuthStatus: {{authStatus}}</label>
+                <label>Last Login Date: {{user.lastLoginDate}}</label>
+                <div class="home-buttons">
+                    <span>
+                        <button type="submit" color="primary" (click)="logout()" mat-raised-button>Log Out</button>
+                    </span>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

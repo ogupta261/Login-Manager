@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<div class="cont">
+    <div class="qr">
+        <mat-card class="qr-card">
+            <mat-card-header>
+                <mat-card-title>SCAN THE QR</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <label>Customer Details</label>
+                <label>Name: {{user.name}}</label>
+                <label>Username: {{user.userName}}</label>
+                <label>Email: {{user.email}}</label>
+                <label>Phone No: {{user.phoneNo}}</label>
+                <img [src]="QRurl" [alt]="QRurl">
+                <div class="qr-buttons">
+                    <span>
+                        <button color="primary" (click)="close()" mat-raised-button>CLOSE</button>
+                        <button color="primary" (click)="login()" mat-raised-button>Back To Login</button>
+                    </span>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
