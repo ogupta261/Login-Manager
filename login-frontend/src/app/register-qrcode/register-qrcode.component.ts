@@ -21,8 +21,8 @@ export class RegisterQrcodeComponent implements OnInit {
     this.dialogRef.close();
   }
   
-  user: RegistrationDataDTO = this.register.getNewUser();
   QRurl: string = this.data.url;
+  backToLoginNeeded: boolean = this.data.backToLoginValue;
   close() {
     this.dialogRef.close();
   }

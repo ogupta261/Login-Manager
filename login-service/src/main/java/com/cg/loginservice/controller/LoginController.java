@@ -75,7 +75,7 @@ public class LoginController {
 
 	// 2FA = Two Factor Authentication with Google Auth
 	// This return the status of 2FA
-	@PostMapping(value = "/2FAStatus", produces = "application/json", consumes = "application/json")
+	@PostMapping(value = "/2FAStatus", produces = "application/json")
 	public ValidationDTO googleAuthStatus(@RequestParam String userName, @RequestParam String role) {
 		return new ValidationDTO(loginService.getUser(userName, role).getAuthConsent());
 	}
@@ -85,7 +85,7 @@ public class LoginController {
 	// It just flips the value, If it was enabled, this will return false, else
 	// true.\
 	// i.e. the Changed 2FA status value.
-	@PostMapping(value = "/change2FAStatus", produces = "application/json", consumes = "application/json")
+	@PostMapping(value = "/change2FAStatus", produces = "application/json")
 	public ValidationDTO changeAuthStatus(@RequestParam String userName, @RequestParam String role) {
 		boolean temp = loginService.changeAuthStatus(userName, role).getAuthConsent();
 		if (!temp)
@@ -100,7 +100,7 @@ public class LoginController {
 	// verify using "validateKey" Line 123
 	// OR get the security question from your user table, verify that. OR BOTH. Your
 	// Choice.
-	@PostMapping(value = "/changePassword", produces = "application/json", consumes = "application/json")
+	@PostMapping(value = "/changePassword", produces = "application/json")
 	public ValidationDTO changePassword(@RequestParam String userName, @RequestParam String role,
 			@RequestParam String newPassword) {
 		return new ValidationDTO(loginService.changePassword(userName, role, newPassword));
@@ -109,7 +109,7 @@ public class LoginController {
 	// This method deletes the user details from the login database and google
 	// authentication database.
 	// It DOES NOT DISABLE, but REMOVES the DATA.
-	@DeleteMapping(value = "/removeCredentials", produces = "application/json", consumes = "application/json")
+	@DeleteMapping(value = "/removeCredentials", produces = "application/json")
 	public String deleteCredentials(@RequestParam String userName, @RequestParam String role) {
 		String result = "";
 		if (loginService.deleteCredentials(userName, role))
@@ -143,7 +143,7 @@ public class LoginController {
     }
 
 	// This method validates the Google Authentication 2FA Code with "userName,role" and "Code".
-    @PostMapping(value = "/validate/key")
+    @PostMapping(value = "/validate/key", produces = "application/json", consumes = "application/json")
     public ValidationDTO validateKey(@RequestBody ValidateCodeDTO authObj) {
         return new ValidationDTO(gAuth.authorizeUser(authObj.getUserNameCommaRole(), authObj.getCode()));
     }

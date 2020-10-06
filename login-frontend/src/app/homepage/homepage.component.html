@@ -10,9 +10,32 @@
                 <label>Role: {{user.role}}</label>
                 <label>AuthStatus: {{authStatus}}</label>
                 <label>Last Login Date: {{user.lastLoginDate}}</label>
+                <form *ngIf="changePass" class="home-form" (ngSubmit)="changePassword()">
+                    <p>
+                        <mat-form-field class="home-full-width">
+                            <mat-label>Password</mat-label>
+                            <input matInput class="home-input" type="password" [formControl]="newPasswordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="newPassword" placeholder="Eg. Password123"/>
+                            
+                            <mat-error *ngIf="(newPasswordFormControl.hasError('pattern') || newPasswordFormControl.hasError('minLength')) && !newPasswordFormControl.hasError('required')">
+                                Please enter a valid Password: Starts with Capital Letter and more than 6 characters. Special Characters: @#
+                            </mat-error>
+                            <mat-error *ngIf="newPasswordFormControl.hasError('required')">
+                                Password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <button color="primary" type="submit" mat-raised-button>Submit</button>
+                    </p>
+                </form>
+                <mat-error *ngIf="passChange">Password Changed Successfully!</mat-error>
                 <div class="home-buttons">
                     <span>
-                        <button type="submit" color="primary" (click)="logout()" mat-raised-button>Log Out</button>
+                        <button color="primary" *ngIf="qrAvailable" (click)="showQR()" mat-raised-button>Show QR Code</button>
+                        <button color="primary" *ngIf="qrAvailable" (click)="hideQR()" mat-raised-button>QR Code Scanned</button>
+                        <button color="primary" *ngIf="!qrAvailable" (click)="changeAuthStatus()" mat-raised-button>Change 2FA Status</button>
+                        <button color="primary" (click)="flipPasswordField()" mat-raised-button>Change Password</button>
+                        <button color="primary" (click)="logout()" mat-raised-button>Log Out</button>
                     </span>
                 </div>
             </mat-card-content>

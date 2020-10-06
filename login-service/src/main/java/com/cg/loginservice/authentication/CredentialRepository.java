@@ -81,8 +81,7 @@ public class CredentialRepository implements ICredentialRepository {
         verifyRole(userDetails[1]);
         Optional<UserOTP> user = userOTPDAO.findById(userNameCommaRole);
         if(user.isEmpty()) {
-            log.error(logUserNo2FA, CustomException.class);
-            throw new CustomException(throwUserNo2FA);
+            return false;
         }
         userOTPDAO.deleteById(userNameCommaRole);
         log.info("User("+userDetails[0]+"-"+userDetails[1]+") 2FA deleted.");

@@ -4,7 +4,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { RegisterQrcodeComponent } from '../register-qrcode/register-qrcode.component';
-import { RegistrationDTO } from '../RegistrationDTO';
+import { RegistrationDTO } from '../DTO/RegistrationDTO';
 import { RegisterService } from '../services/register.service';
 
 export class LoginErrorStateMatcher implements ErrorStateMatcher {
@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
   showQR() {
     setTimeout(() => {
       this.dialog.open(RegisterQrcodeComponent, {
-        data: {url: this.retrievedImageUrl},
+        data: {url: this.retrievedImageUrl, backToLoginValue: true},
         backdropClass: 'dialogBackground',
         panelClass: 'foregroundDialog'
       }).afterClosed().subscribe();
