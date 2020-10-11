@@ -9,7 +9,7 @@ export class AuthGaurd implements CanActivate {
         
     }
 
-    canActivate(route: import("@angular/router").ActivatedRouteSnapshot, state: import("@angular/router").RouterStateSnapshot): boolean{
+    canActivate(): boolean{
         if(this.login.isLoggedIn()){
             return true;
         }else{
