@@ -6,10 +6,10 @@
                 <mat-card-title>WELCOME USER</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <label>Username: {{user.userName}}</label>
-                <label>Role: {{user.role}}</label>
-                <label>AuthStatus: {{authStatus}}</label>
-                <label>Last Login Date: {{user.lastLoginDate}}</label>
+                <label>Username:&nbsp;{{user.userName}}</label>
+                <label>Role:&nbsp;{{user.role}}</label>
+                <label>AuthStatus:&nbsp;{{authStatus}}</label>
+                <label>Last Login Date:&nbsp;{{user.lastLoginDate}}</label>
                 <form *ngIf="changePass" class="home-form" (ngSubmit)="changePassword()">
                     <p>
                         <mat-form-field class="home-full-width">
@@ -20,7 +20,7 @@
                                 Please enter a valid Password: Starts with Capital Letter and more than 6 characters. Special Characters: @#
                             </mat-error>
                             <mat-error *ngIf="newPasswordFormControl.hasError('required')">
-                                Password is <strong>required</strong>
+                                Password is&nbsp;<strong>required</strong>
                             </mat-error>
                         </mat-form-field>
                     </p>
