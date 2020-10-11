@@ -85,7 +85,9 @@ mat-card-content mat-error {
 }
 
 .register-buttons button{
-    margin-left: 30%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .register-buttons p{

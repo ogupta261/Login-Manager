@@ -15,6 +15,7 @@ import { LoginService } from './services/login.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomepageComponent } from './homepage/homepage.component';
 import { HttpErrorInterceptor } from './http-error.interceptor';
+import { AuthGaurd } from './auth-gaurd/auth-gaurd.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { HttpErrorInterceptor } from './http-error.interceptor';
     AngularMaterialModule,
     HttpClientModule
   ],
-  providers: [LoginService,{
+  providers: [LoginService, AuthGaurd,{
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
       multi: true

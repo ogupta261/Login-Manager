@@ -68,7 +68,9 @@ mat-card-content mat-error {
     justify-content: center;
 }
 .otp-buttons button{
-    margin-left: 30%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .otp-buttons p{

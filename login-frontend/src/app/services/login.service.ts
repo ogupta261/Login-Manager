@@ -10,24 +10,24 @@ import { ValidationCodeDTO } from '../DTO/ValidationCodeDTO';
 })
 export class LoginService {
   userLoggedIn: LoginDTO ={
-    authConsent: false,
-    lastLoginDate: new Date(),
-    role: "-1",
-    userName: "-1"
+    authConsent: null,
+    lastLoginDate: null,
+    role: null,
+    userName: null
   };
   constructor(private http: HttpClient) { }
 
   ngOnInit():void {
     this.userLoggedIn={
-      authConsent: false,
-      lastLoginDate: new Date(),
-      role: "-1",
-      userName: "-1"
+      authConsent: null,
+      lastLoginDate: null,
+      role: null,
+      userName: null
     };
   }
 
   isLoggedIn(){
-    if(this.userLoggedIn.userName==='-1'){
+    if(this.userLoggedIn.userName==null){
       return false;
     }
     return true;

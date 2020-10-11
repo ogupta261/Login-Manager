@@ -31,11 +31,8 @@ export class HomepageComponent implements OnInit {
   passChange:boolean=false;
   newPassword:string;
   matcher = new HomeErrorStateMatcher();
-  ngOnInit(): void {
-    if(!this.login.isLoggedIn){
-      this.router.navigateByUrl("/login");
-    }
-  }
+  ngOnInit(): void {}
+  
   newPasswordFormControl = new FormControl('', [
     Validators.required,
     Validators.pattern('[A-Z][a-zA-Z0-9@#]*'),
@@ -95,10 +92,10 @@ export class HomepageComponent implements OnInit {
   }
 
   logout(){
-    this.user.authConsent=false;
-    this.user.lastLoginDate=new Date();
-    this.user.role="-1";
-    this.user.userName="-1";
+    this.user.authConsent=null;
+    this.user.lastLoginDate=null;
+    this.user.role=null;
+    this.user.userName=null;
     this.login.setUserLoggedIn(this.user);
     this.router.navigateByUrl("/login");
   }
