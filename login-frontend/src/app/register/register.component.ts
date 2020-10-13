@@ -34,6 +34,11 @@ export class RegisterComponent implements OnInit {
     Validators.pattern('[A-Z][a-zA-Z0-9@#]*'),
     Validators.minLength(6)
   ])
+  confPasswordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[A-Z][a-zA-Z0-9@#]*'),
+    Validators.minLength(6)
+  ])
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email
@@ -91,7 +96,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(){
-    if(this.nameFormControl.valid && this.userNameFormControl.valid && this.emailFormControl.valid && this.passwordFormControl.valid && this.phoneNoFormControl.valid){
+    if(this.nameFormControl.valid && this.userNameFormControl.valid && this.emailFormControl.valid && this.passwordFormControl.valid && (this.passwordFormControl.value==this.confPasswordFormControl.value) && this.phoneNoFormControl.valid){
       this.register.register(this.user).subscribe(
         e => {
           this.registerError=false;

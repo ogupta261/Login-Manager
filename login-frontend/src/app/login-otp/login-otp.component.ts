@@ -28,9 +28,7 @@ export class LoginOtpComponent implements OnInit {
   };
   otpFormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern('[0-9]*'),
-    Validators.minLength(6),
-    Validators.maxLength(6)
+    Validators.pattern('[0-9]*')
   ])
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data, private router: Router) { }

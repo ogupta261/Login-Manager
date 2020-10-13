@@ -33,8 +33,8 @@ public class LoginServiceImpl implements LoginService {
 		verifyRole(role);
 		LoginCredentials user=loginDao.validateUser(userName, password, role);
 		if(user!=null){
-			log.info("User Validated! - "+user.toString());
 			LoginDTO result = new LoginDTO(user);
+			log.info("User Validated! - "+result.toString());
 			user.setLastLoginDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 			loginDao.save(user);
 			return result;

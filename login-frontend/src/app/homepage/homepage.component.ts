@@ -38,11 +38,16 @@ export class HomepageComponent implements OnInit {
     Validators.pattern('[A-Z][a-zA-Z0-9@#]*'),
     Validators.minLength(6)
   ])
+  confPasswordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[A-Z][a-zA-Z0-9@#]*'),
+    Validators.minLength(6)
+  ])
   flipPasswordField() {
     this.changePass=!this.changePass;
   }
   changePassword(){
-    if(this.newPasswordFormControl.valid){
+    if(this.newPasswordFormControl.valid && (this.newPasswordFormControl.value==this.confPasswordFormControl.value)){
       this.home.changePassword(this.user.userName,this.user.role,this.newPassword).subscribe(
         e => {
           this.changePass=false;

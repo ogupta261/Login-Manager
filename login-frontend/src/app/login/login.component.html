@@ -11,12 +11,9 @@
                         <mat-form-field class="login-full-width">
                             <mat-label>Username</mat-label>
                             <input matInput class="login-input" [formControl]="userNameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.userName" placeholder="Eg. ogupta261"/>
-                            
-                            <mat-error *ngIf="userNameFormControl.hasError('pattern') && !userNameFormControl.hasError('required')">
-                                Please enter a valid Username: Starts with alphabet and cannot have special characters.
-                            </mat-error>
+
                             <mat-error *ngIf="userNameFormControl.hasError('required')">
-                                Username is &nbsp;<strong>required</strong>
+                                Username is&nbsp;<strong>required</strong>
                             </mat-error>
                         </mat-form-field>
                     </p>
@@ -26,11 +23,8 @@
                             <mat-label>Password</mat-label>
                             <input matInput class="login-input" type="password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.password" placeholder="Eg. Password123"/>
                             
-                            <mat-error *ngIf="(passwordFormControl.hasError('pattern') || passwordFormControl.hasError('minLength')) && !passwordFormControl.hasError('required')">
-                                Please enter a valid Password: Starts with Capital Letter and more than 6 characters. Special Characters: @#
-                            </mat-error>
                             <mat-error *ngIf="passwordFormControl.hasError('required')">
-                                Password is &nbsp;<strong>required</strong>
+                                Password is&nbsp;<strong>required</strong>
                             </mat-error>
                         </mat-form-field>
                     </p>
@@ -40,7 +34,7 @@
                     <mat-radio-button class="login-radio-button" *ngFor="let roleValue of rolesAvailable" [value]='roleValue'>{{roleValue}}</mat-radio-button>
                 </mat-radio-group>
                 <mat-error *ngIf="roleFormControl.hasError('required')">
-                    Role is &nbsp;<strong>required</strong>
+                    Role is&nbsp;<strong>required</strong>
                 </mat-error>
                 <div class="login-buttons">
                     <span>

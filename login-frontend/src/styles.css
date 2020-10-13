@@ -12,6 +12,10 @@ h1 {
     font-weight: lighter;
   }
   body {
+    background-image: url(/assets/login-background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     margin: 2em;
   }
   body, input[type="text"], button {

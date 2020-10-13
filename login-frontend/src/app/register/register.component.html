@@ -31,7 +31,7 @@
                                 Please enter a valid Username: Starts with alphabet and cannot have special characters.
                             </mat-error>
                             <mat-error *ngIf="userNameFormControl.hasError('required')">
-                                Username is &nbsp;<strong>required</strong>
+                                Username is&nbsp;<strong>required</strong>
                             </mat-error>
                         </mat-form-field>
                     </p>
@@ -45,7 +45,24 @@
                                 Please enter a valid Password: Starts with Capital Letter and more than 6 characters. Special Characters: @#
                             </mat-error>
                             <mat-error *ngIf="passwordFormControl.hasError('required')">
-                                Password is &nbsp;<strong>required</strong>
+                                Password is&nbsp;<strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+
+                    <p>
+                        <mat-form-field class="register-full-width">
+                            <mat-label>Re-Enter Password</mat-label>
+                            <input matInput class="register-input" type="password" [formControl]="confPasswordFormControl" [errorStateMatcher]="matcher" placeholder="Eg. Password123"/>
+                            
+                            <mat-error *ngIf="(confPasswordFormControl.hasError('pattern') || confPasswordFormControl.hasError('minLength')) && !confPasswordFormControl.hasError('required')">
+                                Please enter a valid Password: Starts with Capital Letter and more than 6 characters. Special Characters: @#
+                            </mat-error>
+                            <mat-error *ngIf="confPasswordFormControl.hasError('required')">
+                                Password is&nbsp;<strong>required</strong>
+                            </mat-error>
+                            <mat-error *ngIf="passwordFormControl.value!=confPasswordFormControl.value && !confPasswordFormControl.hasError('required')">
+                                Please Enter Same password! 
                             </mat-error>
                         </mat-form-field>
                     </p>

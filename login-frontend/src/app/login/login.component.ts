@@ -23,13 +23,10 @@ export class LoginErrorStateMatcher implements ErrorStateMatcher {
 export class LoginComponent implements OnInit {
 
   userNameFormControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern('[a-zA-Z][a-zA-Z0-9]*')
+    Validators.required
   ]);
   passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern('[A-Z][a-zA-Z0-9@#]*'),
-    Validators.minLength(6)
+    Validators.required
   ]);
   roleFormControl = new FormControl('', Validators.required);
   rolesAvailable:string[] = roles;
